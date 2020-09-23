@@ -1,0 +1,46 @@
+Keystore credentials
+  Keystore password: 6c959bf1fbf541c3a890c0327dce9460
+  Key alias:         QHdvcmxhZi9TT0xP
+  Key password:      cddd215b9c1440be8db0b7f807edc9c9
+
+  Keystore type: jks
+Keystore provider: SUN
+
+Your keystore contains 1 entry
+
+Alias name: qhdvcmxhzi9tt0xp
+Creation date: 25.09.2020
+Entry type: PrivateKeyEntry
+Certificate chain length: 1
+Certificate[1]:
+Owner: CN=com.ongame.solo, OU=, O=, L=, ST=, C=US
+Issuer: CN=com.ongame.solo, OU=, O=, L=, ST=, C=US
+Serial number: 707a7b43
+Valid from: Fri Sep 25 08:00:13 NOVT 2020 until: Tue Feb 11 08:00:13 NOVT 2048
+Certificate fingerprints:
+         MD5:  0A:A2:0F:9C:A8:6B:FC:85:55:41:62:42:B7:F1:B6:BA
+         SHA1: AF:19:36:8D:44:98:77:01:53:C8:BD:6A:F1:1F:5C:3B:BE:60:16:B8
+         SHA256: D0:B6:E0:97:42:43:DF:04:3F:3F:88:70:C7:5B:E5:4B:FE:CE:F1:94:03:F2:2A:50:2B:2F:62:CE:68:F0:E0:E1
+Signature algorithm name: SHA256withRSA
+Subject Public Key Algorithm: 2048-bit RSA key
+Version: 3
+
+Extensions:
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 09 61 95 3B 2E C6 8F EB   CA 7B 27 50 4B 78 8D 5B  .a.;......'PKx.[
+0010: 3D 05 35 A9                                        =.5.
+]
+]
+
+
+
+*******************************************
+*******************************************
+
+
+
+Warning:
+The JKS keystore uses a proprietary format. It is recommended to migrate to PKCS12 which is an industry standard format using "keytool -importkeystore -srckeystore SOLO.jks -destkeystore SOLO.jks -deststoretype pkcs12".

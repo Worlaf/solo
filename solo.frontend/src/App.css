@@ -1,0 +1,9 @@
+html,
+body,
+div.App {
+    min-height: 100vh;
+}
+
+div.App {
+    display: flex;
+}
