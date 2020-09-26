@@ -8,5 +8,7 @@ namespace Solo.Api.Models.ParkObject
     public class ParkObjectViewModel : ParkObjectSaveModel
     {
         public int Id { get; set; }
+        public int TicketsTotal { get; set; }
+        public int TicketsClosed { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace Solo.Data.Repositories
             if (ticket.Closed)
                 throw new InvalidOperationException("Can't get queue number for closed ticket.");
 
-            return await CountAsync(t => t.ParkObjectId == ticket.ParkObjectId && t.Id < ticketId);
+            return await CountAsync(t => !t.Closed && t.ParkObjectId == ticket.ParkObjectId && t.Id < ticketId);
         }
     }
 }

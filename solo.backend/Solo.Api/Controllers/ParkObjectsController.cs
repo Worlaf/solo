@@ -42,7 +42,9 @@ namespace Solo.Api.Controllers
                     PriceForChildren = po.PriceForChildren,
                     PublicDescriptionMarkdown = po.PublicDescriptionMarkdown,
                     Type = po.Type,
-                    ImageUrl = po.ImageUrl
+                    ImageUrl = po.ImageUrl,
+                    TicketsClosed = po.Tickets.Count(t => t.Closed),
+                    TicketsTotal = po.Tickets.Count()
                 })
             };
         }
@@ -62,7 +64,9 @@ namespace Solo.Api.Controllers
                 PriceForChildren = po.PriceForChildren,
                 PublicDescriptionMarkdown = po.PublicDescriptionMarkdown,
                 Type = po.Type,
-                ImageUrl = po.ImageUrl
+                ImageUrl = po.ImageUrl,
+                TicketsClosed = po.Tickets.Count(t => t.Closed),
+                TicketsTotal = po.Tickets.Count()
             });
         }
 
@@ -117,7 +121,9 @@ namespace Solo.Api.Controllers
                 Id = entity.Id,
                 Type = entity.Type,
                 ImageUrl = entity.ImageUrl,
-                WorkScheduleJson = entity.WorkScheduleJson
+                WorkScheduleJson = entity.WorkScheduleJson,
+                TicketsTotal = entity.Tickets.Count,
+                TicketsClosed = entity.Tickets.Count(t => t.Closed)
             };
 
             return viewModel;

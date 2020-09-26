@@ -25,17 +25,17 @@ namespace Solo.Api.Controllers
             _ticketRepository = ticketRepository;
         }
 
-        [HttpGet("/my")]
-        public async Task<ListModel<TicketViewModel>> GetMyTicketsAsync(int? parkObjectId = null, bool? includeClosed = null)
+        [HttpGet("my")]
+        public async Task<ListModel<TicketViewModel>> GetMyTicketsAsync(int? parkObjectId = null)
         {
             var userId = GetUserId();
             var result = new ListModel<TicketViewModel>
             {
                 Items = await _ticketRepository.GetManyAsync(
-                    t => t.CustomerId == userId && (!parkObjectId.HasValue || t.ParkObjectId == parkObjectId.Value) && (!includeClosed.HasValue || includeClosed.Value || !t.Closed), t =>
+                    t => t.CustomerId == userId && (!parkObjectId.HasValue || t.ParkObjectId == parkObjectId.Value) && !t.Closed, t =>
                         new TicketViewModel
                         {
-                            Id = t.Id
+                            Id = t.Id,
                             Type = t.Type,
                             Closed = t.Closed,
                             CustomerId = t.CustomerId,
@@ -48,7 +48,7 @@ namespace Solo.Api.Controllers
             return result;
         }
 
-        [HttpPost("/buy")]
+        [HttpPost("buy")]
         public async Task<ListModel<TicketViewModel>> BuyAsync(BuyTicketsModel model)
         {
             // а тут пригодился бы слой сервисов, но времени мало
@@ -85,10 +85,11 @@ namespace Solo.Api.Controllers
             });
         }
 
-        [HttpPost("/close/{id:int}")]
+        [HttpPost("close/{id:int}")]
         public async Task<IActionResult> CloseAsync(int id)
         {
-            if (await _ticketRepository.GetQueueNumberAsync(id) == 0)
+            var queueNumber = await _ticketRepository.GetQueueNumberAsync(id);
+            if (queueNumber == 0)
             {
                 var ticket = await _ticketRepository.GetByIdAsync(id);
                 ticket.Closed = true;
@@ -104,13 +105,13 @@ namespace Solo.Api.Controllers
 
         private void PopulateQueueNumber(ListModel<TicketViewModel> model)
         {
-            var parkObjectIds = model.Items.Select(i => i.ParkObjectId).Distinct().ToArray();
-            var maxId = model.Items.Max(i => i.Id);
-            var tickets = _ticketRepository.GetManyAsync(t => t.Id < maxId && parkObjectIds.Contains(t.ParkObjectId) && !t.Closed, t => new {t.Id, t.ParkObjectId}).Result;
+            if (model.Items.Count == 0)
+                return;
+
 
             foreach (var ticket in model.Items.Where(i => !i.Closed))
             {
-                ticket.QueueNumber = tickets.Count(t => t.Id < ticket.Id && t.ParkObjectId == ticket.ParkObjectId);
+                ticket.QueueNumber = _ticketRepository.GetQueueNumberAsync(ticket.Id).Result;
             }
         }
 

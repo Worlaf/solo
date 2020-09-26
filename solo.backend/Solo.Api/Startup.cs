@@ -97,6 +97,7 @@ namespace solo.api
 
             app.UseCors();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

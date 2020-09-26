@@ -24,6 +24,7 @@ namespace Solo.Domain.Entities
         public string WorkScheduleJson { get; set; }
 
         public ICollection<Discount> Discounts { get; set; }
+        public ICollection<Ticket> Tickets { get; set; }
 
     }
 
