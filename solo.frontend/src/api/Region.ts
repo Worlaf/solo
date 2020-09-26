@@ -1,50 +1,48 @@
 import { GeoPoint } from "./GeoPoint";
 
 export interface Region {
-  points: GeoPoint[];
+    points: GeoPoint[];
 }
 
 export function getRegionCenter(region: Region): GeoPoint {
-  var latSum = 0;
-  var lonSum = 0;
+    var latSum = 0;
+    var lonSum = 0;
 
-  region.points.forEach((p) => {
-    latSum += p.latitude;
-    lonSum += p.longitude;
-  });
+    region.points.forEach((p) => {
+        latSum += p.latitude;
+        lonSum += p.longitude;
+    });
 
-  var point: GeoPoint = {
-    latitude: latSum / region.points.length,
-    longitude: lonSum / region.points.length,
-  };
+    var point: GeoPoint = {
+        latitude: latSum / region.points.length,
+        longitude: lonSum / region.points.length,
+    };
 
-  debugger;
+    debugger;
 
-  return point;
+    return point;
 }
 
 export function getTopLeft(region: Region): GeoPoint {
-  var tl: GeoPoint = {
-    latitude: 90,
-    longitude: 180,
-  };
+    var tl: GeoPoint = region.points[0];
 
-  region.points.forEach((p) => {
-    if (tl.latitude > p.latitude && tl.longitude > p.longitude) tl = p;
-  });
+    region.points.forEach((p) => {
+        if (tl.latitude > p.latitude && tl.longitude > p.longitude) tl = p;
+    });
 
-  return tl;
+    console.log("top left", region, tl);
+
+    return tl;
 }
 
 export function getBottomRight(region: Region): GeoPoint {
-  var tl: GeoPoint = {
-    latitude: -90,
-    longitude: -180,
-  };
+    var br: GeoPoint = region.points[region.points.length - 1];
 
-  region.points.forEach((p) => {
-    if (tl.latitude < p.latitude && tl.longitude < p.longitude) tl = p;
-  });
+    region.points.forEach((p) => {
+        if (br.latitude < p.latitude && br.longitude < p.longitude) br = p;
+    });
 
-  return tl;
+    console.log("bottom right", region, br);
+
+    return br;
 }
