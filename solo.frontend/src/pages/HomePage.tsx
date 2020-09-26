@@ -16,7 +16,7 @@ export default function HomePage() {
                 <Box margin="1em">
                     <Link
                         style={{ fontSize: "2em" }}
-                        href="https://drive.google.com/file/d/1SwGVIXAMDw3lVQuDiJlutlIGl4GS_QmC/view?usp=sharing"
+                        href="https://drive.google.com/file/d/1CCZ_8RrhQoSD41xdvqHBK3SRPqRSV5y3/view?usp=sharing"
                         target="__blank"
                     >
                         Скачать приложение
