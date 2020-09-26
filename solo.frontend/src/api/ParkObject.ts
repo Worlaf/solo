@@ -12,6 +12,8 @@ export interface ParkObject {
     workScheduleJson: string;
     imageUrl: string;
     type: ParkObjectType;
+    ticketsTotal: number;
+    ticketsClosed: number;
 }
 
 export enum ParkObjectType {

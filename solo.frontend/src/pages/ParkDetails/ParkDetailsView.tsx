@@ -114,6 +114,8 @@ export default function ParkDetailsView(props: Props) {
                                                           workScheduleJson: "",
                                                           imageUrl: "",
                                                           type: ParkObjectType.None,
+                                                          ticketsClosed: 0,
+                                                          ticketsTotal: 0,
                                                       }
                                             }
                                             onSave={(o) => {

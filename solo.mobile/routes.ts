@@ -5,6 +5,7 @@ export type RootStackParamsList = {
     ParkList: undefined;
     Map: { parkId: number };
     ParkObject: { parkId: number; parkObjectId: number };
+    SignUp: undefined;
 };
 
 export type StackScreenProps<T extends keyof RootStackParamsList> = ReactNavigationStackScreenProps<RootStackParamsList, T>;

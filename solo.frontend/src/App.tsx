@@ -5,23 +5,25 @@ import MainLayout from "./layouts/MainLayout";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { routes } from "./routes/routes";
 import ParkDetails from "./pages/ParkDetails";
+import HomePage from "./pages/HomePage";
 
 function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <MainLayout>
-          <Switch>
-            <Route exact path={routes.parkList} component={ParkList} />
-            <Route path={routes.parkDetails} component={ParkDetails} />
-            <Route>
-              <Redirect to={routes.parkList} />
-            </Route>
-          </Switch>
-        </MainLayout>
-      </BrowserRouter>
-    </div>
-  );
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <MainLayout>
+                    <Switch>
+                        <Route exact path={routes.home} component={HomePage} />
+                        <Route exact path={routes.parkList} component={ParkList} />
+                        <Route path={routes.parkDetails} component={ParkDetails} />
+                        <Route>
+                            <Redirect to={routes.parkList} />
+                        </Route>
+                    </Switch>
+                </MainLayout>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;

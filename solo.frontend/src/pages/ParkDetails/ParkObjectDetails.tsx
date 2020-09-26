@@ -28,6 +28,8 @@ export default function ParkObjectDetails(props: Props) {
         });
     };
 
+    useEffect(() => setObject(props.object), [props.object]);
+
     function renderProperty(title: string, propertyName: string, displayView: React.ReactElement, editView: React.ReactElement) {
         return (
             <ParkObjectField
@@ -130,6 +132,14 @@ export default function ParkObjectDetails(props: Props) {
                     {props.isSaving && <CircularProgress size="small" />}
                     Сохранить изменения и вернуться к списку
                 </Button>
+            </Container>
+
+            <Container>
+                <br />
+                <Typography variant="h5">Статистика по билетам: </Typography>
+                Всего билетов куплено: {object.ticketsTotal}
+                <br />
+                Билетов использовано: {object.ticketsClosed}
             </Container>
         </Box>
     );
