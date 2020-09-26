@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Builder;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Logging;
+using Solo.Api.App.Authentication;
 using Solo.Api.Controllers;
 using Solo.Data.DatabaseInitializers;
 using Solo.Data.Infrastructure;
@@ -44,7 +46,8 @@ namespace solo.api
                 .AllowAnyMethod()
                 .AllowCredentials()));
 
-            // services.AddAuthentication
+            var authenticationSchemeName = "Basic";
+            services.AddAuthentication(authenticationSchemeName).AddScheme<AuthenticationSchemeOptions, SimplestEmailAuthenticationHandler>(authenticationSchemeName, null);
             // services.AddAuthorization
 
             services

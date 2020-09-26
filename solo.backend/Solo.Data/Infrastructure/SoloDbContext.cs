@@ -18,6 +18,7 @@ namespace Solo.Data.Infrastructure
         public DbSet<User> Users { get; set; }
         public DbSet<Park> Parks { get; set; }
         public DbSet<ParkObject> ParkObjects { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
 
         public SoloDbContext(DbContextOptions options) : base(options)
         {

@@ -14,6 +14,7 @@ namespace Solo.Domain.Entities
         public Point Location { get; set; }
         public decimal PriceForAdults { get; set; }
         public decimal PriceForChildren { get; set; }
+        public decimal PriceForPrivileged { get; set; }
         public string ImageUrl { get; set; }
         public ObjectType Type { get; set; }
 
